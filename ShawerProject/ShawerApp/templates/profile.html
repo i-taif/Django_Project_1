@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="border p-3 mb-3 mt-4 mr-5 ml-5">
+    <img class="img-fluid rounded-circle border m-2" style="width: 70px; height:70px;" src="{{ profile.image.url}}" alt="صورة المستشار">
+    <span class="text-secondary"> خبير منذ  {{profile.start_date|date:'d-m-Y'}}</span>
+     <h3>{{profile.first_name}} {{profile.last_name}}</h3>
+    <p>{{profile.statment}}</p>
+</div>
+    <h1 class="border-bottom mt-5 mb-3 mr-5 ml-5"> التعليقات </h1>
+    <div class="border-bottom mt-5 mb-3 mr-5 ml-5">
+    {% for comment in profile.comments.all  %}
+    <a href="{% url 'delete' comment.id %} "><img src="{% static 'images/deleteIcon.png'%}" width="20px" Align="center"></a>
+    <small> علق {{comment.name}}  في  {{comment.comment_date|date:'d-m-Y'}}</small>
+    <p>{{comment.body}}</p>
+    {% endfor %}
+    {% if not profile.comments.all%}
+     <p> لم يتم التعليق حتى الان </p>
+    {% endif %}
+    </div>
+    <h3 class=" pd-3 mb-6 mt-5 mr-5 ml-5"> اضافة تعليق جديد</h3>
+    <div class="border p-4 mr-5 ml-5">
+        <form method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+         <input class= "btn btn-secondary"type="submit" value="ارسل">
+    </form>
+   </div>
+{% endblock content %}
