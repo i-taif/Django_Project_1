@@ -27,7 +27,7 @@ shawer project: It is a consulting service that enables the consultant to create
 - Connect your project with the PostgreSQL database. 
 - Use Django ORM to migrate your models on PostgreSQL. 
 - Create a form with form validation.
-- Apply CRUD operations on the database. (**Note**: You have to use **all** the following function .all(), .get(), .delete(), and .save()) # DONE
+- Apply CRUD operations on the database. (**Note**: You have to use **all** the following function .all(), .get(), .delete(), and .save())
 
 ### Optional Requirements
 - Use new features to customize your Admin page.
